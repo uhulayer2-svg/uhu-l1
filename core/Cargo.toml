@@ -1,0 +1,13 @@
+[package]
+name = "uhu-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.32", features = ["full"] }
+sled = "0.34"
+axum = "0.7"
+tower-http = { version = "0.5", features = ["cors"] }
+uhu-agent-x = { path = "../agent-x" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

@@ -1,0 +1,16 @@
+﻿version: '3.8'
+services:
+  uhu-genesis-node:
+    build:
+      context: .
+      dockerfile: core/Dockerfile
+    ports:
+      - "3030:3030"     # พอร์ตสำหรับหน้าเว็บ (API)
+      - "30333:30333"   # พอร์ตสำหรับเชื่อมต่อโหนด P2P ทั่วโลก
+    volumes:
+      - uhu_mainnet_data:/uhu/uhu-data  # เซฟ Database ไม่ให้หายตอนรีบูต
+    restart: always
+    container_name: uhu_genesis_node
+
+volumes:
+  uhu_mainnet_data:

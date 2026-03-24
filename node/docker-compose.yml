@@ -1,0 +1,5 @@
+version: '3.8'
+services:
+  uhu-node-1:
+    image: rust:latest
+    container_name: genesis-node

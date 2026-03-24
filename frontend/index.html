@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UHU-L1 Sovereign Explorer</title>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .dashboard { border: 2px solid #3861fb; border-radius: 15px; padding: 20px; background: #161b22; width: 850px; }
+        .box { background: #21262d; border: 1px solid #30363d; padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .treasury-box { text-align: center; border: 1px solid #d4af37; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: left; color: #8b949e; border-bottom: 1px solid #30363d; padding: 10px; }
+        td { padding: 10px; border-bottom: 1px solid #0d1117; }
+        .tx-row { animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        input { background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 10px; border-radius: 5px; width: 200px; margin-right: 10px; }
+        button { background: #238636; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1 style="color:#58a6ff; text-align:center;">👑 UHU-L1 LIVE EXPLORER</h1>
+        <div class="box treasury-box">
+            <div style="color:#d4af37">COMMANDER'S TREASURY</div>
+            <div style="font-size: 2em; color:#ffd700" id="treasuryDisplay">0</div>
+            <div style="margin-top:10px; color:#8b949e">Current Block: <span id="blockHeight" style="color:#ff7b72">0</span></div>
+        </div>
+
+        <div class="box">
+            <h3 style="color:#58a6ff; margin-top:0;">🚀 SEND TRANSACTION</h3>
+            <input type="text" id="txTo" placeholder="Recipient Address">
+            <input type="number" id="txAmount" placeholder="Amount">
+            <button onclick="sendUHU()">SEND</button>
+        </div>
+
+        <div class="box">
+            <h3 style="color:#58a6ff; margin-top:0;">📜 RECENT TRANSACTIONS (LIVE)</h3>
+            <table>
+                <thead>
+                    <tr><th>Block</th><th>From</th><th>To</th><th>Amount (UHU)</th></tr>
+                </thead>
+                <tbody id="txList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const CLOUD_IP = "เลข_IP_ของกัปตัน"; // 🚨 ใส่ IP ของกัปตัน
+
+        async function updateData() {
+            try {
+                // อัปเดตสถานะทั่วไป
+                const resStatus = await fetch(http://\:3030/api/status);
+                const dataStatus = await resStatus.json();
+                document.getElementById('blockHeight').innerText = dataStatus.block_height.toLocaleString();
+                document.getElementById('treasuryDisplay').innerText = dataStatus.treasury.toLocaleString();
+
+                // อัปเดตประวัติการโอน
+                const resTx = await fetch(http://\:3030/api/recent);
+                const txs = await resTx.json();
+                const txList = document.getElementById('txList');
+                txList.innerHTML = txs.map(tx => 
+                    <tr class="tx-row">
+                        <td style="color:#ff7b72">#\</td>
+                        <td style="color:#8b949e">\</td>
+                        <td style="color:#58a6ff">\</td>
+                        <td style="color:#ffd700">+\</td>
+                    </tr>
+                ).join('');
+            } catch (e) {}
+        }
+        setInterval(updateData, 1000);
+
+        async function sendUHU() {
+            const to = document.getElementById('txTo').value;
+            const amount = parseInt(document.getElementById('txAmount').value);
+            await fetch(http://\:3030/api/transfer, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ to: to, amount: amount })
+            });
+            document.getElementById('txTo').value = '';
+            document.getElementById('txAmount').value = '';
+        }
+    </script>
+</body>
+</html>

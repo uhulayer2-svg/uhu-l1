@@ -1,0 +1,1 @@
+// await contract.setPaused(true); // true = หยุดทั้งระบบ, false = เปิดปกติ

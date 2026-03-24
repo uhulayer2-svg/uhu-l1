@@ -1,0 +1,1 @@
+// await contract.burn(ethers.utils.parseEther("1000"));
