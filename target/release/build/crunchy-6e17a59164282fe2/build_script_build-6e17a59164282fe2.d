@@ -1,0 +1,5 @@
+E:\uhu-l1\target\release\build\crunchy-6e17a59164282fe2\build_script_build-6e17a59164282fe2.d: C:\Users\Windows\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\build.rs
+
+E:\uhu-l1\target\release\build\crunchy-6e17a59164282fe2\build_script_build-6e17a59164282fe2.exe: C:\Users\Windows\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\build.rs
+
+C:\Users\Windows\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\build.rs:

@@ -1,0 +1,1 @@
+ExExNotifications<<Node as FullNodeTypes>::Provider, <Node as FullNodeComponents>::Executor>

@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity 0.8.20;
 
-contract IdentityRegistryStorage {
-    mapping(address => address) private _identities;
-    
-    function registerIdentity(address _user, address _identity) external {
-        _identities[_user] = _identity;
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract IdentityRegistry is Ownable {
+    mapping(address => bool) public isVerified;
+
+    event IdentityRegistered(address indexed investor, bool status);
+
+    constructor() Ownable(msg.sender) {}
+
+    // กัปตันสั่งให้ใคร "ผ่าน" KYC ได้ที่นี่
+    function registerIdentity(address _investor, bool _status) external onlyOwner {
+        isVerified[_investor] = _status;
+        emit IdentityRegistered(_investor, _status);
     }
 
-    function getIdentity(address _user) external view returns (address) {
-        return _identities[_user];
+    // ฟังก์ชันตรวจสอบสิทธิ์ (เหรียญ UHU จะมาเรียกใช้ตรงนี้)
+    function contains(address _investor) external view returns (bool) {
+        return isVerified[_investor];
     }
 }

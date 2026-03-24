@@ -1,0 +1,12 @@
+cargo:rustc-env=VERGEN_BUILD_TIMESTAMP=2026-03-22T07:35:38.632493900Z
+cargo:rustc-env=VERGEN_CARGO_FEATURES=jemalloc
+cargo:rustc-env=VERGEN_CARGO_TARGET_TRIPLE=x86_64-pc-windows-msvc
+cargo:rustc-env=VERGEN_GIT_DESCRIBE=1ba631ba9
+cargo:rustc-env=VERGEN_GIT_SHA=1ba631ba9581973e7c6cadeea92cfe1802aceb4a
+cargo:rustc-env=VERGEN_GIT_DIRTY=true
+cargo:rerun-if-changed=C:/Users/Windows/.cargo/git/checkouts/reth-e231042ee7db3fb7/1ba631b/.git\HEAD
+cargo:rerun-if-changed=C:/Users/Windows/.cargo/git/checkouts/reth-e231042ee7db3fb7/1ba631b/.git\refs/heads/master
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-env-changed=VERGEN_IDEMPOTENT
+cargo:rerun-if-env-changed=SOURCE_DATE_EPOCH
+cargo:rustc-env=RETH_VERSION_SUFFIX=-dev
